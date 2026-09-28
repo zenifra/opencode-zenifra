@@ -1,0 +1,43 @@
+{
+  "name": "@zenifra/opencode",
+  "version": "0.1.0",
+  "description": "Zenifra provider with automatic model discovery for OpenCode V2",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenifra/opencode-zenifra.git"
+  },
+  "homepage": "https://github.com/zenifra/opencode-zenifra#readme",
+  "bugs": {
+    "url": "https://github.com/zenifra/opencode-zenifra/issues"
+  },
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": "./src/index.js",
+  "files": [
+    "src",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm test",
+    "prepack": "npm run check"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "zenifra",
+    "llm"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "3.9.9"
+  }
+}
