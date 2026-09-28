@@ -29,6 +29,9 @@ src/
 test/
   plugin.test.js   Testes de catálogo e ciclo de vida com dependências simuladas
   options.test.js  Testes dos limites e opções de configuração
+  package.test.js  Contrato de distribuição sem scripts de lifecycle
+scripts/
+  verify-github.mjs  Validação real de instalação e gerenciamento pelo GitHub
 ```
 
 O nome interno do pacote é `@zenifra/opencode`, distribuído pelo GitHub. O ID do plugin é
@@ -59,6 +62,30 @@ npm test
 Os testes não usam credenciais, não dependem da API pública e não geram inferência paga.
 As dependências de rede, agendamento e logs são injetadas pela função `createPlugin`.
 O relógio real é usado somente no teste do timeout de uma consulta.
+
+### Teste de instalação ponta a ponta
+
+Com o executável `opencode` V2 disponível no `PATH`:
+
+```bash
+npm run test:e2e
+```
+
+Para validar uma branch antes do merge:
+
+```bash
+OPENCODE_TEST_PLUGIN=github:zenifra/opencode-zenifra#NOME_DA_BRANCH npm run test:e2e
+```
+
+O teste cria um `HOME`, banco e porta de serviço próprios; instala o pacote remoto,
+aguarda os registros reais, cadastra uma chave propositalmente inválida, compara os
+modelos com o endpoint público e verifica configuração, atualização e remoção. Também
+verifica o cadastro e remoção de uma variável no serviço com um valor fictício.
+Nenhuma chave real é herdada e não há inferência paga nesse comando. O serviço de teste
+é encerrado ao final, e os diagnósticos ficam no diretório temporário impresso.
+
+Inferência, ferramentas, variantes e login interativo exigem uma validação separada com
+chave de teste. Os resultados executados estão em [docs/VALIDATION.md](./docs/VALIDATION.md).
 
 Cubra conversão de metadados, IDs duplicados, preços, opções inválidas, cache, falhas de
 rede, recuperação após falha, recarga do provedor e cancelamento de requisições.
@@ -124,7 +151,10 @@ O `package.json` mantém `private: true` para impedir publicação acidental no 
 Isso não torna o repositório GitHub privado e não impede sua instalação por referência Git.
 Os comandos npm deste projeto são ferramentas locais de desenvolvimento e empacotamento.
 
-`npm pack` pode ser usado para inspecionar o artefato local; `prepack` executa `npm run check`.
+`npm run pack:checked` verifica o projeto e gera o artefato local. Não há scripts de
+lifecycle (`prepare`, `prepack`, `install` ou `postinstall`): a instalação pelo GitHub
+deve carregar o JavaScript diretamente, sem executar testes ou instalar ferramentas de
+desenvolvimento no ambiente do cliente.
 Não há automação de publicação ou criação de releases.
 
 ## Próximas versões

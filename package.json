@@ -18,14 +18,16 @@
     "src",
     "README.md",
     "CONTRIBUTING.md",
+    "docs/VALIDATION.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "node --test",
+    "test:e2e": "node scripts/verify-github.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run format:check && npm test",
-    "prepack": "npm run check"
+    "pack:checked": "npm run check && npm pack"
   },
   "engines": {
     "node": ">=22"
