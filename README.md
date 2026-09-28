@@ -90,6 +90,8 @@ opencode plugin list
 ```
 
 Abra o OpenCode e execute `/connect`. A opção **Zenifra** deve estar disponível.
+Na primeira inicialização, o carregamento dos plugins acontece em segundo plano. Se a
+lista ainda estiver vazia, aguarde a inicialização e consulte-a novamente.
 Se você tinha uma cópia antiga em `~/.config/opencode/plugins/zenifra/`, mantenha apenas
 uma instalação para evitar registros duplicados.
 
@@ -374,7 +376,12 @@ npm run pack:checked
 
 - `npm run format`: aplica a formatação padrão.
 - `npm run check`: verifica a formatação e executa os testes.
+- `npm run test:e2e`: valida a instalação real pelo GitHub, autenticação cadastrada,
+  catálogo, configuração, atualização e remoção em um ambiente isolado.
 - `npm run pack:checked`: executa as verificações e gera o pacote `.tgz`.
+
+Consulte o [relatório de validação](./docs/VALIDATION.md) para os cenários exercitados
+com o OpenCode real, incluindo inferência e ferramentas.
 
 Consulte [CONTRIBUTING.md](./CONTRIBUTING.md) para a estrutura do código, testes locais,
 validação de inferência e o fluxo de publicação de versões no GitHub.

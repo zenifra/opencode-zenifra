@@ -18,10 +18,12 @@
     "src",
     "README.md",
     "CONTRIBUTING.md",
+    "docs/VALIDATION.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "node --test",
+    "test:e2e": "node scripts/verify-github.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run format:check && npm test",
