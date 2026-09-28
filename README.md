@@ -369,12 +369,12 @@ Para desenvolver, use Node.js 22 ou superior:
 ```bash
 npm ci
 npm run check
-npm pack
+npm run pack:checked
 ```
 
 - `npm run format`: aplica a formatação padrão.
 - `npm run check`: verifica a formatação e executa os testes.
-- `npm pack`: executa as verificações e gera o pacote `.tgz`.
+- `npm run pack:checked`: executa as verificações e gera o pacote `.tgz`.
 
 Consulte [CONTRIBUTING.md](./CONTRIBUTING.md) para a estrutura do código, testes locais,
 validação de inferência e o fluxo de publicação de versões no GitHub.

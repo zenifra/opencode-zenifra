@@ -124,7 +124,10 @@ O `package.json` mantém `private: true` para impedir publicação acidental no 
 Isso não torna o repositório GitHub privado e não impede sua instalação por referência Git.
 Os comandos npm deste projeto são ferramentas locais de desenvolvimento e empacotamento.
 
-`npm pack` pode ser usado para inspecionar o artefato local; `prepack` executa `npm run check`.
+`npm run pack:checked` verifica o projeto e gera o artefato local. Não há scripts de
+lifecycle (`prepare`, `prepack`, `install` ou `postinstall`): a instalação pelo GitHub
+deve carregar o JavaScript diretamente, sem executar testes ou instalar ferramentas de
+desenvolvimento no ambiente do cliente.
 Não há automação de publicação ou criação de releases.
 
 ## Próximas versões
