@@ -165,7 +165,11 @@ test("registers key/env authentication, fetches public endpoint, persists and re
     h.state.methods.map((m) => m.method.type),
     ["key", "env"],
   )
-  assert.deepEqual(h.state.methods[1].method.names, ["ZENIFRA_API_KEY"])
+  assert.deepEqual(h.state.methods[1].method.names, [
+    "ZENIFRA_AI_API_KEY",
+    "ZENIFRA_API_KEY",
+    "ZENIFRA_AI_KEY",
+  ])
   assert.equal(h.state.record.info.integrationID, "zenifra")
   assert.equal(h.state.record.info.activation, "auto")
   assert.equal(h.state.record.models.length, 1)

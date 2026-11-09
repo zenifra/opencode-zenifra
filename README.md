@@ -10,7 +10,7 @@ com seus limites de contexto, suporte a ferramentas, modalidades e variantes de 
 | ----------------------------------- | ---------------------------------------------------- |
 | OpenCode                            | V2                                                   |
 | Protocolo de inferência             | OpenAI-compatible Chat Completions                   |
-| Autenticação                        | Chave de API ou `ZENIFRA_API_KEY`                    |
+| Autenticação                        | Chave de API ou `ZENIFRA_AI_API_KEY`                 |
 | Descoberta de modelos               | Ao carregar o plugin e, por padrão, a cada 5 minutos |
 | Cache                               | Persistente, gerenciado pelo OpenCode                |
 | Dependências de execução adicionais | Nenhuma                                              |
@@ -127,14 +127,14 @@ opencode auth list
 Para iniciar uma instância independente com a chave no ambiente:
 
 ```bash
-export ZENIFRA_API_KEY="SUA_CHAVE_ZENIFRA"
+export ZENIFRA_AI_API_KEY="SUA_CHAVE_ZENIFRA"
 opencode --standalone
 ```
 
 Para o serviço compartilhado gerenciado pelo OpenCode:
 
 ```bash
-opencode service set env ZENIFRA_API_KEY "SUA_CHAVE_ZENIFRA"
+opencode service set env ZENIFRA_AI_API_KEY "SUA_CHAVE_ZENIFRA"
 opencode auth list
 ```
 
@@ -146,7 +146,7 @@ Uma conta salva no OpenCode tem precedência sobre a conexão por variável de a
 Para remover a variável do serviço gerenciado:
 
 ```bash
-opencode service unset env ZENIFRA_API_KEY
+opencode service unset env ZENIFRA_AI_API_KEY
 ```
 
 ## Escolher e usar modelos
