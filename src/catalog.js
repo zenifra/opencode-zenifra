@@ -83,6 +83,9 @@ export function parseCatalog(payload, { pricingCurrency } = {}) {
       const operations = strings(item.supported_operations, [], "supported operations")
       if (!operations.includes("/v1/chat/completions")) continue
     }
+    // Non-chat models (e.g. evaluation) may omit max_output_tokens; skip them instead of
+    // rejecting the whole inventory.
+    if (item.max_output_tokens == null) continue
     const id = item.id.replace(/^zenifra\//, "")
     if (
       !id ||
