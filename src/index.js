@@ -38,7 +38,10 @@ export function createPlugin({
         editor.method.update({ integrationID: PROVIDER_ID, method: { type: "key" } })
         editor.method.update({
           integrationID: PROVIDER_ID,
-          method: { type: "env", names: ["ZENIFRA_API_KEY"] },
+          method: {
+            type: "env",
+            names: ["ZENIFRA_AI_API_KEY", "ZENIFRA_API_KEY", "ZENIFRA_AI_KEY"],
+          },
         })
         editor.update(PROVIDER_ID, (integration) => {
           integration.name = "Zenifra"
