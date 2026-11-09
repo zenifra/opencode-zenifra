@@ -1,9 +1,6 @@
 export const PROVIDER_ID = "zenifra"
 export const BASE_URL = "https://ai.zenifra.com/v1"
 export const MODELS_URL = `${BASE_URL}/models`
-// OpenCode sends limit.output as max_tokens, and the gateway reserves input + max_tokens against the
-// key TPM before running; advertised maxima (up to 1M) would make every request a 429.
-export const MAX_OUTPUT_TOKENS = 32_000
 
 function isRecord(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value)
@@ -130,10 +127,7 @@ export function parseCatalog(payload, { pricingCurrency } = {}) {
       enabled: true,
       status: "active",
       time: { released: 0 },
-      limit: {
-        context: item.context_length,
-        output: Math.min(item.max_output_tokens, MAX_OUTPUT_TOKENS),
-      },
+      limit: { context: item.context_length, output: item.max_output_tokens },
       capabilities,
       ...(reasoning?.supported ? { compatibility: { reasoningField: "reasoning_content" } } : {}),
       variants: efforts.map((effort) => ({ id: effort, body: { reasoning_effort: effort } })),

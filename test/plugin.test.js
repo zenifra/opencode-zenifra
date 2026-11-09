@@ -146,9 +146,8 @@ test("rejects empty, malformed and colliding inventories; excludes embedding-onl
     )
   }
   assert.throws(() => parseCatalog(catalog({ max_output_tokens: 0 })))
-  // Huge advertised outputs are capped so input + max_tokens fits the key TPM.
-  assert.equal(parseCatalog(catalog({ max_output_tokens: 1048576 }))[0].limit.output, 32000)
-  assert.equal(parseCatalog(catalog({ max_output_tokens: 16384 }))[0].limit.output, 16384)
+  // The gateway fits max_tokens to the key TPM, so the real advertised maximum is kept.
+  assert.equal(parseCatalog(catalog({ max_output_tokens: 1048576 }))[0].limit.output, 1048576)
 })
 
 test("registers key/env authentication, fetches public endpoint, persists and refreshes", async () => {
