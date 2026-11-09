@@ -136,6 +136,16 @@ test("rejects empty, malformed and colliding inventories; excludes embedding-onl
       .length,
     1,
   )
+  // Evaluation models published without an output limit must not hide every chat model.
+  for (const max_output_tokens of [null, undefined]) {
+    assert.equal(
+      parseCatalog({
+        data: [...data, { id: "zenifra/kev-4b", context_length: 65536, max_output_tokens }],
+      }).length,
+      1,
+    )
+  }
+  assert.throws(() => parseCatalog(catalog({ max_output_tokens: 0 })))
 })
 
 test("registers key/env authentication, fetches public endpoint, persists and refreshes", async () => {
