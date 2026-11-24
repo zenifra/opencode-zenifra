@@ -40,6 +40,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "prettier": "3.9.9"
+    "prettier": "3.10.1"
   }
 }
